@@ -19,7 +19,7 @@ public class Constants {
     }
 
     public enum TileState {
-        BLANK("", Color.RESET),
+        BLANK(" ", Color.RESET),
         X("X", Color.RED),
         O("O", Color.BLUE),
         DRAW("", Color.RESET);
