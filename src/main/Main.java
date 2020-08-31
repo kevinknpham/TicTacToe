@@ -22,5 +22,6 @@ public class Main {
 
     private static Pair playTurn(BigBoard board, TileState player, Pair lastMove) {
 
+
     }
 }
