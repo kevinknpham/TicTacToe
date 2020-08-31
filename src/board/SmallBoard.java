@@ -7,6 +7,7 @@ public class SmallBoard {
     private TileState winner;
     private TileState[][] board;
     private int dimension;
+    private int moveCount;
 
     public SmallBoard(int dimension) {
         board = new TileState[this.dimension][this.dimension];
@@ -18,6 +19,7 @@ public class SmallBoard {
         isDone = false;
         winner = TileState.BLANK;
         this.dimension = dimension;
+        this.moveCount = 0;
     }
 
     public int getDimension() {
@@ -36,7 +38,14 @@ public class SmallBoard {
         return board[row - 1][col - 1];
     }
 
-    public void updateTileState(int row, int col, TileState player) {
+    /**
+     *
+     * @param row
+     * @param col
+     * @param player
+     * @return true on success, false if spot already marked
+     */
+    public boolean updateTileState(int row, int col, TileState player) {
         if (isDone) {
             throw new IllegalStateException("This board is already done");
         }
@@ -53,8 +62,13 @@ public class SmallBoard {
                     "\texpected non-null value but got null"
             );
         }
+        if (board[row - 1][col - 1] != TileState.BLANK) {
+            return false;
+        }
         board[row - 1][col - 1] = player;
         checkForWinner(row, col, player);
+        moveCount++;
+        return true;
     }
 
     private void checkForWinner(int row, int col, TileState player) {
@@ -102,6 +116,9 @@ public class SmallBoard {
         if (rowMatches || colMatches || diagonalMatch1 || diagonalMatch2) {
             isDone = true;
             winner = player;
+        } else if (moveCount == dimension * dimension) {
+            isDone = true;
+            winner = TileState.DRAW;
         }
     }
 }
