@@ -1,6 +1,7 @@
 package main;
 
 import board.BigBoard;
+import utils.BoardPrinter;
 import utils.Constants.TileState;
 import utils.Pair;
 
@@ -15,15 +16,20 @@ public class Main {
         Pair coords = Pair.NULL_PAIR;
         Scanner console = new Scanner(System.in);
         while (!board.isDone()) {
+            BoardPrinter.printBoard(board);
             coords = playTurn(board, xTurn ? TileState.X : TileState.O, coords, console);
             xTurn = !xTurn;
         }
     }
 
     private static Pair playTurn(BigBoard board, TileState player, Pair lastMove, Scanner console) {
-        while (!board.smallBoardIsPlayable(lastMove.getRow(), lastMove.getCol())) {
-            System.out.println("Board at row " + lastMove.getRow() + " and column " + lastMove.getCol() + " is done.");
-            System.out.println("Pick the row and column of the board you want to use next.");
+        while (lastMove == Pair.NULL_PAIR || !board.smallBoardIsPlayable(lastMove.getRow(), lastMove.getCol())) {
+            if (lastMove == Pair.NULL_PAIR) {
+                System.out.println("Pick the small board where you would like to start.");
+            } else {
+                System.out.println("Board at row " + lastMove.getRow() + " and column " + lastMove.getCol() + " is done.");
+                System.out.println("Pick the row and column of the board you want to use next.");
+            }
             lastMove = new Pair(
                     promptForValidInteger(console, "Row?"),
                     promptForValidInteger(console, "Column?")

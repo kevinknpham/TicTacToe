@@ -14,7 +14,7 @@ public class BigBoard {
         this.winner = TileState.BLANK;
         this.board = new SmallBoard[dimension][dimension];
         for (int i = 0; i < dimension; i++) {
-            for (int j = 0; j < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
                 board[i][j] = new SmallBoard(dimension);
             }
         }
@@ -92,7 +92,7 @@ public class BigBoard {
         if (row == dimension + 1 - col) {
             diagonalMatch2 = true;
             for (int i = 0; i < dimension; i++) {
-                SmallBoard smallBoard = board[i][dimension + 1 - i];
+                SmallBoard smallBoard = board[i][dimension - 1 - i];
                 if (!smallBoard.isDone() || smallBoard.getWinner() != player) {
                     diagonalMatch2 = false;
                 }

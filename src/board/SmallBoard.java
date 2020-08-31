@@ -10,9 +10,9 @@ public class SmallBoard {
     private int moveCount;
 
     public SmallBoard(int dimension) {
-        board = new TileState[this.dimension][this.dimension];
-        for (int i = 0; i < this.dimension; i++) {
-            for (int j = 0; j < this.dimension; j++) {
+        board = new TileState[dimension][dimension];
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
                 board[i][j] = TileState.BLANK;
             }
         }
@@ -105,7 +105,7 @@ public class SmallBoard {
         if (row == dimension + 1 - col) {
             diagonalMatch2 = true;
             for (int i = 0; i < dimension; i++) {
-                if (board[i][dimension + 1 - i] != player) {
+                if (board[i][dimension - 1 - i] != player) {
                     diagonalMatch2 = false;
                 }
             }
