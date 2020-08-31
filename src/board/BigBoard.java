@@ -36,6 +36,10 @@ public class BigBoard {
         return board[row - 1][col - 1];
     }
 
+    public boolean smallBoardIsPlayable(int row, int col) {
+        return !board[row - 1][col - 1].isDone();
+    }
+
     /**
      * @return true on success, false if spot on board is already marked
      */
