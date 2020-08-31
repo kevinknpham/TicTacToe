@@ -32,7 +32,11 @@ public class SmallBoard {
         return winner;
     }
 
-    public void updateTile(int row, int col, TileState player) {
+    public TileState getTileState(int row, int col) {
+        return board[row - 1][col - 1];
+    }
+
+    public void updateTileState(int row, int col, TileState player) {
         if (isDone) {
             throw new IllegalStateException("This board is already done");
         }

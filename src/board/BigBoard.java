@@ -32,5 +32,7 @@ public class BigBoard {
         return winner;
     }
 
-    public
+    public SmallBoard getSmallBoard(int row, int col) {
+        return board[row][col];
+    }
 }
