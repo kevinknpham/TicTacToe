@@ -13,8 +13,24 @@ public class BigBoard {
         this.isDone = false;
         this.winner = TileState.BLANK;
         this.board = new SmallBoard[dimension][dimension];
-        for (int i = 0; i < dimension; i++)
-            for (int j = 0; j < dimension; i++)
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; i++) {
                 board[i][j] = new SmallBoard(dimension);
+            }
+        }
     }
+
+    public int getDimension() {
+        return dimension;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public TileState getWinner() {
+        return winner;
+    }
+
+    public
 }
